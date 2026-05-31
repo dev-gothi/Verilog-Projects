@@ -1,151 +1,109 @@
-# ⚡ Verilog HDL Projects
+# Verilog HDL Projects
 
-> A structured collection of digital circuits implemented in SystemVerilog/Verilog HDL — from basic logic gates to complex sequential systems. Simulated using **EDA Playground (Icarus Verilog)** and verified with **EPWave**.
-
----
-
-## 👨‍💻 Author
-**Dev** | Electronics & Communication Engineering | SVNIT Surat  
-[![GitHub](https://img.shields.io/badge/GitHub-Dev--VL55-181717?style=flat&logo=github)](https://github.com/Dev-VL55)
+It is A collection of digital circuits that I built while learning Verilog/SystemVerilog. Starts from the basics (half adder, gates) and goes up to sequential stuff like shift registers, counters, and RAM. Everything properly tested and Simulated.
 
 ---
 
-## 🛠️ Tools & Technologies
-
-| Tool | Purpose |
-|------|---------|
-| SystemVerilog / Verilog HDL | Hardware Description |
-| EDA Playground | Online Simulation |
-| Icarus Verilog | Compiler/Simulator |
-| EPWave | Waveform Viewer |
-| DigitalJS Online | Logic Visualization |
-
----
-
-## 📁 Project Structure
+## What's inside
 
 ```
 Verilog-Projects/
-├── Combinational Circuits/
-│   ├── Half Adder/
-│   ├── Full Adder/
-│   ├── Full Subtractor/
-│   ├── Mux/
-│   ├── Demux/
-│   ├── Encoder/
-│   ├── Decoder/
-│   └── Latches/
-│
-├── Sequential Circuits/
-│   ├── Counters/
-│   │   ├── MOD-3 Counter (50% duty cycle)
-│   │   ├── MOD-4 Counter
-│   │   └── MOD-8 Counter
-│   ├── Multiple Mod Counter/
-│   ├── Frequency Division Circuits/
-│   ├── Shift Registers/
-│   │   ├── SISO
-│   │   ├── SIPO
-│   │   ├── PISO
-│   │   └── PIPO
-│   ├── Universal Shift Register/
-│   └── RAM/
+├── Half Adder/
+├── Full Adder/
+├── Full Subtractor/
+├── Mux/
+├── Demux/
+├── Encoder/
+├── Decoder/
+├── Latches/
+├── Counters/
+├── Multiple Mod counter/
+├── Frequency Divison Circuits/
+├── Shift Registers/
+├── Universal Shift Register/
+└── Ram/
 ```
 
----
-
-## 🔷 Combinational Circuits
-
-### ➕ Adders & Subtractors
-| Module | Description |
-|--------|-------------|
-| Half Adder | 1-bit addition, no carry-in |
-| Full Adder | 1-bit addition with carry-in |
-| Full Subtractor | 1-bit subtraction with borrow |
-
-### 🔀 Multiplexers & Demultiplexers
-| Module | Description |
-|--------|-------------|
-| MUX | Multiple input selection |
-| DEMUX | Single input to multiple outputs |
-
-### 🔢 Encoders & Decoders
-| Module | Description |
-|--------|-------------|
-| Encoder | Priority encoder implementation |
-| Decoder | Binary to one-hot decoder |
+Each folder has the design file and a testbench. Run them together on EDA Playground.
 
 ---
 
-## 🔶 Sequential Circuits
+## Projects
 
-### 🔁 Shift Registers
-| Module | Description |
-|--------|-------------|
-| SISO | Serial In Serial Out |
-| SIPO | Serial In Parallel Out |
-| PISO | Parallel In Serial Out |
-| PIPO | Parallel In Parallel Out |
-| **Universal Shift Register** | All 4 modes — controlled by `s1, s0` select lines |
+### Combinational Circuits
 
-### 🔢 Counters
-| Module | Description | Special Feature |
-|--------|-------------|-----------------|
-| MOD-3 Counter | Counts 0→1→2→0 | 50% duty cycle using dual-edge triggering |
-| MOD-4 Counter | Counts 0→1→2→3→0 | Synchronous reset |
-| MOD-8 Counter | Counts 0 to 7 | 3-bit output |
-| Multiple MOD Counter | Configurable MOD | N-bit generic design |
+**Half Adder / Full Adder / Full Subtractor**  
+Basic arithmetic circuits. Half adder handles single-bit addition, full adder adds carry-in as well. Subtractor uses borrow logic. Good starting point before moving to more complex stuff.
 
-### 📡 Frequency Division Circuits
-| Module | Description |
-|--------|-------------|
-| Divide by 2 | Output = clk/2 |
-| Divide by 3 | 50% duty cycle — posedge + negedge logic |
+**Mux & Demux**  
+Multiplexer selects one of N inputs based on select lines. Demux does the reverse — routes a single input to one of multiple outputs. Both are designed with parameterized select widths.
 
-### 💾 RAM
-| Module | Description |
-|--------|-------------|
-| Single Port RAM | Read/Write with address, data bus |
+**Encoder & Decoder**  
+Priority encoder takes multiple input lines and encodes the highest-priority active one. Decoder is binary-to-one-hot — standard 2:4 and 3:8 implementations.
 
 ---
 
-## ▶️ How to Simulate
+### Sequential Circuits
 
-1. Go to [EDA Playground](https://www.edaplayground.com/)
-2. Select **Icarus Verilog 12.0** as simulator
-3. Paste design code in left panel, testbench in right panel
-4. Check **"Open EPWave after run"**
-5. Click **Run** ▶️
+**Latches**  
+SR and D latches — level-sensitive, not edge-triggered. Useful to understand the difference between latches and flip-flops before moving to registers.
 
----
+**Shift Registers**  
+Four types covered:
+- SISO — serial in, serial out
+- SIPO — serial in, parallel out
+- PISO — parallel in, serial out
+- PIPO — parallel in, parallel out
 
-## 🎯 Key Concepts Covered
+**Universal Shift Register**  
+All four shift modes combined into one module, controlled by `s1` and `s0` select lines. This one took a bit of debugging — had to be careful with blocking vs non-blocking assignments.
 
-- ✅ Blocking vs Non-Blocking assignments
-- ✅ Always blocks — posedge, negedge, dual-edge triggering
-- ✅ Moore & Mealy state machines
-- ✅ Synchronous & Asynchronous Reset
-- ✅ Parameterized modules
-- ✅ Testbench writing & waveform verification
+**Counters**  
+MOD-3, MOD-4, and MOD-8 counters with synchronous reset. The MOD-3 one is the interesting case — getting a 50% duty cycle out of an odd modulus counter isn't straightforward with a single clock edge, so it uses dual always blocks (posedge + negedge) with the outputs OR'd together.
 
----
+**Multiple Mod Counter**  
+Configurable counter where the modulus can be set as a parameter. More of a general-purpose design.
 
-## 📌 Highlight Project — MOD-3 Counter (50% Duty Cycle)
+**Frequency Division Circuits**  
+Divide-by-2 is trivial (toggle flip-flop). Divide-by-3 with 50% duty cycle is the tricky one — same dual-edge approach as the MOD-3 counter.
 
-```verilog
-// Dual edge triggering for 50% duty cycle
-always @(posedge clk) ...  // posedge logic
-always @(negedge clk) ...  // negedge logic
-// Final output = OR of both
-```
-> Standard single-edge MOD-3 cannot achieve 50% duty cycle.  
-> Solved using dual always blocks — a common VLSI interview question!
+**RAM (Single Port)**  
+Simple single-port RAM with separate read/write enable signals. Synchronous write, asynchronous read. Useful for understanding how memory modules are modeled in HDL before touching actual FPGA block RAM.
 
 ---
 
-## 📄 License
-MIT License — free to use for learning and reference.
+## Tools used
+
+- **EDA Playground** — online simulator, no local setup needed
+- **Aldec Riviera-PRO** — the compiler
+- **EPWave** — for checking waveforms after simulation
+- **DigitalJS Online** — occasionally used for quick logic visualization
 
 ---
 
-⭐ **Star this repo if you found it useful!**
+## How to run any project
+
+1. Open [edaplayground.com](https://edaplayground.com)
+2. Set the simulator to **Aldec Riviera-PRO**
+3. Paste the design (`.v` file) in the left panel
+4. Paste the testbench in the right panel
+5. Tick **"Open EPWave after run"** so waveforms load automatically
+6. Hit Run
+
+---
+
+## A few things I learned along the way
+
+- Mixing blocking and non-blocking assignments in the same always block causes subtle bugs that don't always show up immediately in simulation
+- For odd-modulus counters, you can't get 50% duty cycle with a single clock edge — need to combine posedge and negedge logic
+- Testbench quality matters as much as the design itself — a bad testbench gives false confidence
+- Always check your port directions — `input`/`output` mismatches in module instantiation are a common source of silent failures
+
+---
+
+## About
+
+**Dev Gothi** — VLSI Engineering student, SVNIT Surat  
+
+
+GitHub: [@dev-gothi](https://github.com/dev-gothi)
