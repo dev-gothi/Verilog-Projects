@@ -1,0 +1,27 @@
+// Code your testbench here
+// or browse Examples
+module testbench();
+  reg ytb,stb;
+  wire atb,btb;
+  
+  demux dm1(ytb,stb,atb,btb);
+  initial
+    begin
+      {ytb,stb} =0;
+      $dumpfile("dump.vcd"); $dumpvars;
+    end
+  
+  initial 
+    begin
+      int m=0;
+         $monitor("ytb : %b | stb : %b | atb : %b | btb : %b",ytb,stb,atb,btb);
+      while(m<4)
+        begin
+          #1;
+          {ytb,stb} = m;
+          m++;
+        end
+     
+    end
+endmodule
+          
