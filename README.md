@@ -16,6 +16,7 @@ Verilog-Projects/
 ├── Encoder/
 ├── Decoder/
 ├── Latches/
+├── Flip-Flops/
 ├── Counters/
 ├── Multiple Mod counter/
 ├── Frequency Divison Circuits/
@@ -47,6 +48,15 @@ Priority encoder takes multiple input lines and encodes the highest-priority act
 
 **Latches**  
 SR and D latches — level-sensitive, not edge-triggered. Useful to understand the difference between latches and flip-flops before moving to registers.
+
+**Flip-Flops**  
+All four standard flip-flop types implemented — SR, D, JK, and T. All are synchronous, posedge-triggered with active-high reset and complementary `q`/`qbar` outputs. Key behaviors covered:
+- **SR FF** — Set/Reset/Hold, plus the invalid state (S=1, R=1) explicitly handled by driving outputs to `x`
+- **D FF** — Output directly follows `din` on clock edge; simplest of the four
+- **JK FF** — Extends SR by replacing the invalid case with a toggle condition (J=1, K=1)
+- **T FF** — Toggles output when `tin=1`, holds when `tin=0`; good building block for counters
+
+Each has a dedicated testbench covering all input combinations and reset behavior.
 
 **Shift Registers**  
 Four types covered:
