@@ -33,7 +33,7 @@ module SRff(input clk,reset,s,r,output reg q,qbar);
           qbar<=0;
         end
       
-      //toggle condition
+      //Invalid condition
       else 
         begin
           q  <= 'bx;
