@@ -54,7 +54,7 @@ All four standard flip-flop types implemented — SR, D, JK, and T. All are sync
 - **SR FF** — Set/Reset/Hold, plus the invalid state (S=1, R=1) explicitly handled by driving outputs to `x`
 - **D FF** — Output directly follows `din` on clock edge; simplest of the four
 - **JK FF** — Extends SR by replacing the invalid case with a toggle condition (J=1, K=1)
-- **T FF** — Toggles output when `tin=1`, holds when `tin=0`; good building block for counters
+- **T FF** — Toggles output when `tin=1`, holds when `tin=0`
 
 Each has a dedicated testbench covering all input combinations and reset behavior.
 
@@ -95,7 +95,7 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 
 1. Open [edaplayground.com](https://edaplayground.com)
 2. Set the simulator to **Aldec Riviera-PRO**
-3. Paste the design (`.v` file) in the left panel
+3. Paste the design (`.sv` file) in the left panel
 4. Paste the testbench in the right panel
 5. Tick **"Open EPWave after run"** so waveforms load automatically
 6. Hit Run
