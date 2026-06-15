@@ -1,6 +1,10 @@
 # 🛗 4-Floor Elevator Controller — FSM-Based Verilog Design
 
+<<<<<<< HEAD
 It is **Finite State Machine (FSM)** based digital design of a 4-floor elevator controller implemented in Verilog HDL. The design includes a combinational priority encoder for floor requests, a Moore-style FSM for movement control, and an emergency stop feature — all driven by a synchronous clock.
+=======
+It is **Finite State Machine (FSM)** based digital design of a 4-floor elevator controller implemented in Verilog HDL. The design includes a priority encoder for floor requests, a Moore-style FSM for movement control, and an emergency stop feature — all driven by a synchronous clock.
+>>>>>>> fe0eed0bb968cf8ecd2e3a2967a7237e99cfb649
 
 ---
 
