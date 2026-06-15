@@ -185,7 +185,8 @@ floorreq ──► [1. Priority Encoder — always@(*)]
 
 ### Simulation Waveform
 
-![Waveform](sim/waveform_screenshot.png)
+
+Elevator Controller Design/sim/waveform screenshot.png
 
 ---
 
