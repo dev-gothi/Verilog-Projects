@@ -1,12 +1,12 @@
 # 🛗 4-Floor Elevator Controller — FSM-Based Verilog Design
 
-A **Finite State Machine (FSM)** based digital design of a 4-floor elevator controller implemented in Verilog HDL. The design includes a priority encoder for floor requests, a Moore-style FSM for movement control, and an emergency stop feature — all driven by a synchronous clock.
+It is **Finite State Machine (FSM)** based digital design of a 4-floor elevator controller implemented in Verilog HDL. The design includes a priority encoder for floor requests, a Moore-style FSM for movement control, and an emergency stop feature — all driven by a synchronous clock.
 
 ---
 
 ## 📌 Project Overview
 
-This project models the core control logic of a 4-floor elevator system (Floor 0 to Floor 3). It determines the elevator's target floor from incoming requests using a **priority encoder**, drives the motor UP or DOWN accordingly, and handles **emergency stop** conditions. The design is fully synchronous and simulation-verified on EDA Playground.
+My project models the core control logic of a 4-floor elevator system (Floor 0 to Floor 3). It determines the elevator's target floor from incoming requests using a **priority encoder**, drives the motor UP or DOWN accordingly, and handles **emergency stop** conditions. The design is fully synchronous and simulation-verified on EDA Playground.
 
 ---
 
