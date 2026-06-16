@@ -1,6 +1,6 @@
 # Verilog HDL Projects
 
-It is A collection of digital circuits that I built while learning Verilog/SystemVerilog. Starts from the basics (half adder, gates) and goes up to sequential stuff like shift registers, counters, and RAM. Everything properly tested and Simulated.
+It is the collection of digital circuits that I built while learning Verilog/SystemVerilog. Starts from the basics (half adder, gates) and goes up to sequential stuff like shift registers, counters, and RAM. Everything properly tested and Simulated.
 
 ---
 
