@@ -22,7 +22,9 @@ Verilog-Projects/
 ├── Frequency Divison Circuits/
 ├── Shift Registers/
 ├── Universal Shift Register/
-└── Ram/
+├── Ram/
+├── Digital_Door_Lock/
+└── Elevator_Controller/
 ```
 
 Each folder has the design file and a testbench. Run them together on EDA Playground.
@@ -79,6 +81,16 @@ Divide-by-2 is trivial (toggle flip-flop). Divide-by-3 with 50% duty cycle is th
 
 **RAM (Single Port)**  
 Simple single-port RAM with separate read/write enable signals. Synchronous write, asynchronous read. Useful for understanding how memory modules are modeled in HDL before touching actual FPGA block RAM.
+
+---
+
+### FSM Based
+
+**Elevator Controller**  
+4-floor elevator controller implemented as a 4-state FSM — IDLE, MOVEUP, MOVEDOWN, and EMERGENCY. Floor requests come in as a 4-bit one-hot input; a priority encoder decodes the highest-priority request into a 2-bit target floor. The FSM compares target floor with current floor and decides direction. Current floor increments or decrements each clock cycle while moving. Door opens only in IDLE state, stays closed during movement. Emergency stop overrides any state immediately — motor halts, door stays closed — and holds until the signal is released. Reset brings the elevator to floor 0 with door open.
+
+**Digital Door Lock**  
+4-bit password-based door lock implemented as a Mealy/Moore FSM with 4 states — IDLE, UNLOCKED, ERROR, and ALARM. Wrong password increments an attempt counter; three consecutive wrong attempts trigger the alarm, which stays active until manual reset. Correct password from ERROR state unlocks directly without needing a reset. Supports runtime password update via a `setmode` signal, accessible only from the UNLOCKED state. Attempt counter resets only on successful unlock, not on reset — preventing alarm bypass.
 
 ---
 
