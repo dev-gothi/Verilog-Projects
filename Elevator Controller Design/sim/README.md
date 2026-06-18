@@ -185,7 +185,7 @@ floorreq ──► [1. Priority Encoder — always@(*)]
 
 ### Simulation Waveform
 
-![Waveform](sim/waveform%20screenshot.png)
+![Waveform](sim/waveform_screenshot.png)
 
 ---
 
