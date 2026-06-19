@@ -129,3 +129,4 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 
 
 GitHub: [@dev-gothi](https://github.com/dev-gothi)
+LinkedIn : (https://LinkedIn.com/dev-gothi)
