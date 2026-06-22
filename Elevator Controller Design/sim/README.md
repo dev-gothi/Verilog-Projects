@@ -210,7 +210,7 @@ B.Tech — Electronics & VLSI Engineering
 Sardar Vallabhbhai National Institute of Technology (SVNIT), Surat
 
 🔗 GitHub: [github.com/dev-gothi](https://github.com/dev-gothi)  
-🔗 LinkedIn: *(add your LinkedIn URL here)*  
+🔗 LinkedIn: *([add your LinkedIn URL here](https://www.linkedin.com/in/dev-gothi?utm_source=share_via&utm_content=profile&utm_medium=member_android))*  
 🔗 EDA Playground: *(https://www.edaplayground.com/x/XWRf)*
 
 ---
