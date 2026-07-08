@@ -5,7 +5,7 @@
 ![Platform](https://img.shields.io/badge/Platform-EDA%20Playground-green)
 ![Status](https://img.shields.io/badge/Status-Verified-brightgreen)
 
-A 4-state **Mealy FSM with a registered output** that removes short glitch pulses from a sampled data stream — a classic hardware **debounce** problem.
+It is a 4-state **Mealy FSM with a registered output** that removes short glitch pulses from a sampled data stream — a classic hardware **debounce** problem.
 
 ---
 
@@ -62,8 +62,8 @@ The output only flips (`s0w → s1` or `s1w → s0`) when the **same** new value
 
 | File | Description |
 |------|--------------|
-| `debouncer.v` | RTL design |
-| `debouncer_tb.v` | Testbench |
+| `debouncer.sv` | RTL design |
+| `debouncer_tb.sv` | Testbench |
 
 ---
 
