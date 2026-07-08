@@ -1,6 +1,6 @@
 # Vending Machine FSM (Verilog)
 
-A Moore/Mealy-style vending machine controller implemented as a 5-state Finite State Machine in Verilog. The machine accepts coins, accumulates their value, dispenses an item once a sufficient amount has been collected, and returns any excess change.
+It is a Moore/Mealy-style vending machine controller implemented using a 5-state Finite State Machine in Verilog. The machine accepts coins, accumulates their value, dispenses an item once a sufficient amount has been collected, and returns any excess change.
 
 ## Overview
 
