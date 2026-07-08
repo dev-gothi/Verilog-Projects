@@ -77,7 +77,7 @@ vendingmachine #(.PRICE(5'd20)) uut (
 
 Below is a simulation waveform captured on EDA Playground / Aldec Riviera-PRO (with the default `PRICE = 15`), showing coin insertions, `coinvalue`, `dispense`, `insufficient`, and `change` behavior over time:
 
-![Vending Machine Waveform](waveform.png)
+![Vending Machine Waveform](Waveform.png)
 
 ### Waveform Walkthrough
 
