@@ -1,6 +1,13 @@
 # Verilog HDL Projects
 
-It is the collection of digital circuits that I built while learning Verilog/SystemVerilog. Starts from the basics (half adder, gates) and goes up to sequential stuff like shift registers, counters, and RAM. Everything properly tested and Simulated.
+![Verilog](https://img.shields.io/badge/Verilog-IEEE1364-blue?style=flat-square&logo=v&logoColor=white)
+![SystemVerilog](https://img.shields.io/badge/SystemVerilog-IEEE1800-purple?style=flat-square)
+![EDA Playground](https://img.shields.io/badge/Simulator-EDA%20Playground-orange?style=flat-square)
+![Riviera-PRO](https://img.shields.io/badge/Compiler-Aldec%20Riviera--PRO-red?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square)
+
+It is the collection of digital circuits that I built while learning Verilog/SystemVerilog. Starts from the basics (half adder, gates) and goes up to sequential stuff like shift registers, counters, and RAM, and now FSM-based designs like vending machines and debouncers. Everything properly tested and simulated.
 
 ---
 
@@ -24,7 +31,10 @@ Verilog-Projects/
 ├── Universal Shift Register/
 ├── Ram/
 ├── Digital_Door_Lock/
-└── Elevator_Controller/
+├── Elevator_Controller/
+├── Debouncer/
+├── Vending_Machine/
+└── Sequence_Detector_1011/
 ```
 
 Each folder has the design file and a testbench. Run them together on EDA Playground.
@@ -86,6 +96,15 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 
 ### FSM Based
 
+**Debouncer**  
+4-state Moore-ish FSM (`s0`, `s0w`, `s1`, `s1w`) that filters out switch-bounce glitches on a noisy input line. The two "wait" states (`s0w`, `s1w`) act as a buffer — a single-cycle glitch back to the old value doesn't immediately flip the output, only a sustained level change does. Output is registered, so `dout` only updates once the FSM has actually settled into a stable state. Basic building block before touching real switch/button inputs on an FPGA.
+
+**Vending Machine**  
+5-state FSM (IDLE, COLLECTING, SUFFICIENT, DISPENSE, RETURNCHANGE) that accepts coins of varying denominations and dispenses an item once the running total crosses the price threshold (15). Tracks the inserted sum in a running register, flags `insufficient` while still collecting, and computes change combinationally in the RETURNCHANGE state before resetting the sum and looping back to IDLE. Good example of separating a datapath (the sum accumulator) from the controlling FSM.
+
+**Sequence Detector (1011, Mealy)**  
+4-state Mealy FSM (`s0`–`s3`) that detects the overlapping bit pattern `1011` on a serial input line. Each state tracks how much of the sequence has been matched so far — `s3` is reached once `101` has been seen, and `dout` pulses high the same cycle `din=1` completes the pattern, which is the defining trait of a Mealy machine (output depends on state *and* current input, not just state). Overlapping sequences are handled correctly too — after a detection, the FSM falls back to `s1` instead of `s0` if the last bit could also be the start of a new match, so back-to-back `1011011` style streams don't miss a hit.
+
 **Elevator Controller**  
 4-floor elevator controller implemented as a 4-state FSM — IDLE, MOVEUP, MOVEDOWN, and EMERGENCY. Floor requests come in as a 4-bit one-hot input; a priority encoder decodes the highest-priority request into a 2-bit target floor. The FSM compares target floor with current floor and decides direction. Current floor increments or decrements each clock cycle while moving. Door opens only in IDLE state, stays closed during movement. Emergency stop overrides any state immediately — motor halts, door stays closed — and holds until the signal is released. Reset brings the elevator to floor 0 with door open.
 
@@ -96,10 +115,12 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 
 ## Tools used
 
-- **EDA Playground** — online simulator, no local setup needed
-- **Aldec Riviera-PRO** — the compiler
-- **EPWave** — for checking waveforms after simulation
-- **DigitalJS Online** — occasionally used for quick logic visualization
+| Tool | Purpose |
+|------|---------|
+| ![EDA Playground](https://img.shields.io/badge/-EDA%20Playground-orange?style=flat-square) | Online simulator, no local setup needed |
+| ![Riviera-PRO](https://img.shields.io/badge/-Aldec%20Riviera--PRO-red?style=flat-square) | The compiler |
+| ![EPWave](https://img.shields.io/badge/-EPWave-yellow?style=flat-square) | Checking waveforms after simulation |
+| ![DigitalJS](https://img.shields.io/badge/-DigitalJS%20Online-lightblue?style=flat-square) | Occasional quick logic visualization |
 
 ---
 
@@ -118,6 +139,7 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 
 - Mixing blocking and non-blocking assignments in the same always block causes subtle bugs that don't always show up immediately in simulation
 - For odd-modulus counters, you can't get 50% duty cycle with a single clock edge — need to combine posedge and negedge logic
+- Splitting an FSM into separate `always` blocks for state register, next-state logic, and output logic makes debugging a lot easier than cramming everything into one block
 - Testbench quality matters as much as the design itself — a bad testbench gives false confidence
 - Always check your port directions — `input`/`output` mismatches in module instantiation are a common source of silent failures
 
@@ -127,6 +149,5 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 
 **Dev Gothi** — VLSI Engineering student, SVNIT Surat  
 
-
-GitHub: [@dev-gothi](https://github.com/dev-gothi)
-LinkedIn : (https://LinkedIn.com/dev-gothi)
+[![GitHub](https://img.shields.io/badge/GitHub-dev--gothi-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/dev-gothi)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-dev--gothi-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://LinkedIn.com/dev-gothi)
