@@ -62,8 +62,8 @@ The output only flips (`s0w → s1` or `s1w → s0`) when the **same** new value
 
 | File | Description |
 |------|--------------|
-| `debouncer.v` | RTL design |
-| `debouncer_tb.v` | Testbench |
+| `debouncer.sv` | RTL design |
+| `debouncer_tb.sv` | Testbench |
 
 ---
 
