@@ -1,6 +1,6 @@
 # Verilog HDL Projects
 
-It is the collection of digital circuits that I built while learning Verilog/SystemVerilog. Starts from the basics (half adder, gates) and goes up to sequential stuff like shift registers, counters, and RAM. Everything properly tested and Simulated.
+It is the collection of digital circuits that I built while learning Verilog/SystemVerilog. Starts from the basics (half adder, gates) and goes up to sequential stuff like shift registers, counters, and RAM, and now FSM-based designs like vending machines and debouncers. Everything properly tested and simulated.
 
 ---
 
@@ -24,7 +24,9 @@ Verilog-Projects/
 ├── Universal Shift Register/
 ├── Ram/
 ├── Digital_Door_Lock/
-└── Elevator_Controller/
+├── Elevator_Controller/
+├── Debouncer/
+└── Vending_Machine/
 ```
 
 Each folder has the design file and a testbench. Run them together on EDA Playground.
@@ -86,6 +88,12 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 
 ### FSM Based
 
+**Debouncer**  
+4-state Moore-ish FSM (`s0`, `s0w`, `s1`, `s1w`) that filters out switch-bounce glitches on a noisy input line. The two "wait" states (`s0w`, `s1w`) act as a buffer — a single-cycle glitch back to the old value doesn't immediately flip the output, only a sustained level change does. Output is registered, so `dout` only updates once the FSM has actually settled into a stable state. Basic building block before touching real switch/button inputs on an FPGA.
+
+**Vending Machine**  
+5-state FSM (IDLE, COLLECTING, SUFFICIENT, DISPENSE, RETURNCHANGE) that accepts coins of varying denominations and dispenses an item once the running total crosses the price threshold (15). Tracks the inserted sum in a running register, flags `insufficient` while still collecting, and computes change combinationally in the RETURNCHANGE state before resetting the sum and looping back to IDLE. Good example of separating a datapath (the sum accumulator) from the controlling FSM.
+
 **Elevator Controller**  
 4-floor elevator controller implemented as a 4-state FSM — IDLE, MOVEUP, MOVEDOWN, and EMERGENCY. Floor requests come in as a 4-bit one-hot input; a priority encoder decodes the highest-priority request into a 2-bit target floor. The FSM compares target floor with current floor and decides direction. Current floor increments or decrements each clock cycle while moving. Door opens only in IDLE state, stays closed during movement. Emergency stop overrides any state immediately — motor halts, door stays closed — and holds until the signal is released. Reset brings the elevator to floor 0 with door open.
 
@@ -118,6 +126,7 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 
 - Mixing blocking and non-blocking assignments in the same always block causes subtle bugs that don't always show up immediately in simulation
 - For odd-modulus counters, you can't get 50% duty cycle with a single clock edge — need to combine posedge and negedge logic
+- Splitting an FSM into separate `always` blocks for state register, next-state logic, and output logic makes debugging a lot easier than cramming everything into one block
 - Testbench quality matters as much as the design itself — a bad testbench gives false confidence
 - Always check your port directions — `input`/`output` mismatches in module instantiation are a common source of silent failures
 
@@ -126,7 +135,6 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 ## About
 
 **Dev Gothi** — VLSI Engineering student, SVNIT Surat  
-
 
 GitHub: [@dev-gothi](https://github.com/dev-gothi)
 LinkedIn : (https://LinkedIn.com/dev-gothi)
