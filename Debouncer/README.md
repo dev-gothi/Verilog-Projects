@@ -1,4 +1,4 @@
-# 🧹 Pulse Filter / Debounce FSM — Verilog
+#  Pulse Filter / Debounce FSM — Verilog
 
 ![Verilog](https://img.shields.io/badge/Verilog-HDL-blue)
 ![Simulator](https://img.shields.io/badge/Simulator-Riviera--PRO-orange)
