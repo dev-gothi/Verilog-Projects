@@ -1,6 +1,6 @@
 # Vending Machine FSM (Verilog)
 
-A Moore/Mealy-style vending machine controller implemented as a 5-state Finite State Machine in Verilog. The machine accepts coins, accumulates their value, dispenses an item once a sufficient amount has been collected, and returns any excess change.
+It is a Moore/Mealy-style vending machine controller implemented using a 5-state Finite State Machine in Verilog. The machine accepts coins, accumulates their value, dispenses an item once a sufficient amount has been collected, and returns any excess change.
 
 ## Overview
 
@@ -12,7 +12,7 @@ The vending machine requires a minimum total of a configurable **`PRICE`** (defa
 |-----------|-----------|---------------------------------------------------|
 | `PRICE`   | `5'd15`   | Item price; total coin value required to dispense |
 
-The price is no longer hardcoded — it can be overridden at instantiation time:
+
 
 ```verilog
 vendingmachine #(.PRICE(5'd20)) uut (
@@ -77,7 +77,7 @@ vendingmachine #(.PRICE(5'd20)) uut (
 
 Below is a simulation waveform captured on EDA Playground / Aldec Riviera-PRO (with the default `PRICE = 15`), showing coin insertions, `coinvalue`, `dispense`, `insufficient`, and `change` behavior over time:
 
-![Vending Machine Waveform](waveform.png)
+![Vending Machine Waveform](Waveform.png)
 
 ### Waveform Walkthrough
 
