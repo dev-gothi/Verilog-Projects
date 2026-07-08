@@ -12,7 +12,7 @@ The vending machine requires a minimum total of a configurable **`PRICE`** (defa
 |-----------|-----------|---------------------------------------------------|
 | `PRICE`   | `5'd15`   | Item price; total coin value required to dispense |
 
-The price is no longer hardcoded — it can be overridden at instantiation time:
+
 
 ```verilog
 vendingmachine #(.PRICE(5'd20)) uut (
