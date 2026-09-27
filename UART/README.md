@@ -1,6 +1,6 @@
 # UART (Universal Asynchronous Receiver/Transmitter) — Verilog Implementation
 
-I had made the parameterizable, from-scratch UART transmitter and receiver written in Verilog, using a shared 16x-oversampled baud rate generator, FSM-based control logic, and shift-register-based serialization/deserialization.
+A parameterizable, from-scratch UART transmitter and receiver written in Verilog, using a shared 16x-oversampled baud rate generator, FSM-based control logic, and shift-register-based serialization/deserialization.
 
 ![Verilog](https://img.shields.io/badge/Language-Verilog-blue)
 ![RTL Design](https://img.shields.io/badge/RTL-Design-orange)
