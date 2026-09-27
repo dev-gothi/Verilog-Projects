@@ -107,13 +107,11 @@ To verify the design (e.g., in a testbench or on EDA Playground):
 4. Observe `rxdone` assert and `rxdata` match the transmitted byte after one full frame period.
 5. To test error handling, inject a corrupted stop bit on the internal serial line and confirm `error` asserts.
 
----
+### Sample Waveform
 
-## Design Notes / Known Limitations
+![UART Simulation Waveform](./simulation_waveform.png)
 
-- No parity bit is implemented — the frame format is: 1 start bit, 8 data bits, 1 stop bit (8N1).
-- `rxdone` currently asserts on `ps==STOP && rxsample` regardless of the `error` flag; consumers should check `error` alongside `rxdone` if strict frame validity is required.
-- The design assumes `datain`/`txstart` remain stable when sampled; no explicit input synchronization/CDC logic is included, since `clk` is assumed common to both TX and RX in this implementation.
+The waveform above shows a loopback simulation: `datain` (`dd`) is transmitted via `txstart`, shifted out serially, and progressively reconstructed by the receiver in `rxdata` before `rxdone` and `txdone` both assert, confirming a successful round trip with `error` held low throughout.
 
 ---
 
