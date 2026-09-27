@@ -7,13 +7,11 @@
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square)
 
-It is the collection of digital circuits that I built while learning Verilog/SystemVerilog. Starts from the basics (half adder, gates) and goes up to sequential stuff like shift registers, counters, and RAM, and now FSM-based designs like vending machines and debouncers. Everything properly tested and simulated.
+It is the collection of digital circuits that I built while learning Verilog/SystemVerilog. Starts from the basics (half adder, gates) and goes up to sequential stuff like shift registers, counters, and RAM, and now FSM-based designs like vending machines and debouncers, along with a complete UART serial communication core. Everything properly tested and simulated.
 
 ---
 
 ## What's inside
-
-```
 Verilog-Projects/
 ├── Half Adder/
 ├── Full Adder/
@@ -34,8 +32,8 @@ Verilog-Projects/
 ├── Elevator_Controller/
 ├── Debouncer/
 ├── Vending_Machine/
-└── Sequence_Detector_1011/
-```
+├── Sequence_Detector_1011/
+└── UART/
 
 Each folder has the design file and a testbench. Run them together on EDA Playground.
 
@@ -111,6 +109,9 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 **Digital Door Lock**  
 4-bit password-based door lock implemented as a Mealy/Moore FSM with 4 states — IDLE, UNLOCKED, ERROR, and ALARM. Wrong password increments an attempt counter; three consecutive wrong attempts trigger the alarm, which stays active until manual reset. Correct password from ERROR state unlocks directly without needing a reset. Supports runtime password update via a `setmode` signal, accessible only from the UNLOCKED state. Attempt counter resets only on successful unlock, not on reset — preventing alarm bypass.
 
+**UART (Transmitter + Receiver)**  
+Full-duplex UART core built from a shared 16x-oversampled baud rate generator plus two independent FSMs. The `tx` module (IDLE → START → DATA → STOP) parallel-loads an 8-bit input into a shift register and serializes it LSB-first, one bit per `txtick`. The `rx` module detects the start bit via falling-edge detection on the idle-high line, then uses a nested-counter scheme (`bitcounter` for timing within a bit, `databits` for position within the byte) to sample each bit at its mid-point — the most noise-resistant instant — before shifting it into `rxdata`. A `rxdone` pulse signals a complete, valid byte, while `error` flags a stop-bit framing violation. `uarttop` wires `tx` and `rx` together internally for self-contained loopback verification. Frame format: 1 start bit, 8 data bits, 1 stop bit (8N1), no parity.
+
 ---
 
 ## Tools used
@@ -142,6 +143,7 @@ Simple single-port RAM with separate read/write enable signals. Synchronous writ
 - Splitting an FSM into separate `always` blocks for state register, next-state logic, and output logic makes debugging a lot easier than cramming everything into one block
 - Testbench quality matters as much as the design itself — a bad testbench gives false confidence
 - Always check your port directions — `input`/`output` mismatches in module instantiation are a common source of silent failures
+- For serial protocols like UART, sampling at the mid-point of a bit period (via oversampling) rather than at the edges makes the design far more tolerant of clock drift and line noise
 
 ---
 
